@@ -1,0 +1,11 @@
+public class Scene1 extends Scene {
+  public Scene1() {
+    super(5, new Animable[] {new AnimatedText(0, 1, 5)});
+  }
+  public void update() {
+    println("Updated: Scene 1");
+  }
+  public void draw() {
+    background(0, 0, 0);
+  }
+}
