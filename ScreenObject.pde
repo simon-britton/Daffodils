@@ -1,68 +1,62 @@
 public abstract class ScreenObject {
   private ArrayList<ScreenObject> components;
   private State state;
-  public ScreenObject() {
-    state = new State(0, 0, 0, 1);
+  private Canvas parent;
+  
+  public ScreenObject(Canvas parent) {
+    this.parent = parent;
+    state = new State(parent, 0, 0, 0, 1, 100);
   }
-  public ScreenObject(State state) {
+  
+  public ScreenObject(Canvas parent, State state) {
+    this.parent = parent;
     this.state = state;
   }
-  public ScreenObject(ArrayList<ScreenObject> components) {
-    state = new State(0, 0, 0, 1);
-    this.components = components;
-  }
-  public ScreenObject(State state, ArrayList<ScreenObject> components) {
-    this.state = state;
-    this.components = components;
-  }
-  public abstract void draw();
-  public abstract void draw(float alpha);
-  public void snapshot() {
-    pushMatrix();
-    state.applyState();
-    draw();
-    if (components != null) {
-      for (ScreenObject s : components) {
-        if (s != null) {
-          s.snapshot();
-        }
-      }
+  
+  public void add(ScreenObject s) {
+    if (components == null) {
+      components = new ArrayList<ScreenObject>();
     }
-    popMatrix();
+    components.add(s);
   }
-  public void snapshot(float alpha) {
-    pushMatrix();
-    state.applyState();
-    draw(alpha);
-    if (components != null) {
-      for (ScreenObject s : components) {
-        if (s != null) {
-          s.snapshot(alpha);
-        }
-      }
-    }
-    popMatrix();
+  
+  public void draw() {
   }
-  public void iterate() {
-    pushMatrix();
-    state.applyState();
-    draw(); 
-    iterateChildren();
-    popMatrix();
-  }
-  public void iterateChildren() {
-    if (components != null) {
-      for (ScreenObject s : components) {
-        if (s != null) {
-          s.iterate();
-        }
-      }
-    }
-  }
+  
   public ArrayList<ScreenObject> getComponents() {
     return components;
   }
+  
+  public Canvas getParent() {
+    return parent;
+  }
+  
   public State getState() {
     return state;
+  }
+  
+  public void iterate() {
+    parent.getGraphics().pushMatrix();
+    state.applyState();
+    draw();
+    iterateChildren();
+    parent.getGraphics().popMatrix();
+  }
+  
+  public void iterateChildren() {
+    if (components != null) {
+      for (ScreenObject s : components) {
+        s.iterate();
+      }
+    }
+  }
+  
+  public void reset() {
+    state.reset();
+    if(components != null) {
+      for(ScreenObject component : components) {
+        component.reset();
+      }
+    }
   }
 }

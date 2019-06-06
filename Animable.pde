@@ -1,6 +1,7 @@
 public interface Animable {
-  public void decrementFramesRemaining();
-  public void iterate();
+  public void init();
   public boolean isFinished();
+  public void iterate();
+  public void reset();
   public boolean started();
 }

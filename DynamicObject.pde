@@ -1,23 +1,37 @@
 public abstract class DynamicObject extends ScreenObject {
-  public DynamicObject() {
-    super();
+  private boolean isInit;
+  
+  public DynamicObject(Canvas parent) {
+    super(parent);
+    isInit = false;
   }
-  public DynamicObject(State state) {
-    super(state);
+  
+  public DynamicObject(Canvas parent, State state) {
+    super(parent, state);
+    isInit = false;
   }
-  public DynamicObject(ArrayList<ScreenObject> components) {
-    super(components);
+  
+  public void init() {
   }
-  public DynamicObject(State state, ArrayList<ScreenObject> components) {
-    super(state, components);
-  }
-  public abstract void update();
+  
   public void iterate() {
-    pushMatrix();
+    if (!isInit) {
+      init();
+      isInit = true;
+    }
+    getParent().getGraphics().pushMatrix();
     update();
-    super.getState().applyState();
+    getState().applyState();
     draw(); 
-    super.iterateChildren();
-    popMatrix();
+    iterateChildren();
+    getParent().getGraphics().popMatrix();
+  }
+  
+  public void reset() {
+    isInit = false;
+    super.reset();
+  }
+  
+  public void update(){
   }
 }

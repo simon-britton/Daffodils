@@ -1,36 +1,43 @@
 public class AnimatedText extends AnimableObject {
-  private String text;
   private color fill;
-  public AnimatedText(State state, int startLineNumber, int endLineNumber, int duration) {
-    super(state, duration);
+  private String text;
+  
+  public AnimatedText(Canvas parent, int startLineNumber, int endLineNumber, State state, float duration, color fill, Animation ... animations) {
+    super(parent, state, duration);
     text = "";
     for (int i = startLineNumber; i <= endLineNumber; i++) {
       text += lines[i]+"\n";
     }
+    this.fill = fill;
+    addAllAnimations(animations);
   }
-  public AnimatedText(int x, int y, int startLineNumber, int endLineNumber, int duration) {
-    super(new State(x, y, 0, 1), duration);
+  
+  public AnimatedText(Canvas parent, int startLineNumber, int endLineNumber, State state, float start, float duration, color fill, Animation ... animations) {
+    super(parent, state, start, duration);
     text = "";
     for (int i = startLineNumber; i <= endLineNumber; i++) {
       text += lines[i]+"\n";
     }
+    this.fill = fill;
+    addAllAnimations(animations);
   }
-  public AnimatedText(State state, String text, int duration) {
-    super(state, duration);
-    this.text = text;
+  
+  public AnimatedText(Canvas parent, int lineNumber, State state, float duration, color fill, Animation ... animations) {
+    super(parent, state, duration);
+    text = lines[lineNumber];
+    this.fill = fill;
+    addAllAnimations(animations);
   }
-  public AnimatedText(int x, int y, String text, int duration) {
-    super(new State(x, y, 0, 1), duration);
-    this.text = text;
+  
+  public AnimatedText(Canvas parent, int lineNumber, State state, float start, float duration, color fill, Animation ... animations) {
+    super(parent, state, start, duration);
+    text = lines[lineNumber];
+    this.fill = fill;
+    addAllAnimations(animations);
   }
-  public void update() {
-  }
+  
   public void draw() {
-    fill(0, 0, 100);
-    text(text, 0, 0);
-  }
-  public void draw(float alpha) {
-    fill(0, 0, 100, alpha);
-    text(text, 0, 0);
+    getParent().getGraphics().fill(fill, getState().getAlpha());
+    getParent().getGraphics().text(text, 0, 0);
   }
 }
