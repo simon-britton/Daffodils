@@ -9,7 +9,7 @@ Simon Britton, a freshman currently enrolled in the AP Computer Science course a
 Simply clone this repository on Github, or download the files as a .zip folder. They are also available in Google Drive, though access is restricted to those attending or working at Francis Parker School. 
 
 ## Usage
-Once you have downloaded the contents as described above, open the folder with Processing. If you do not currently own Processing, you can download it [here](https://processing.org/). A round play button should appear near the top-left corner of the application window. Click on it, and enjoy the show!
+Once you have downloaded the contents as described above, open the sketch folder with Processing. If you do not currently own Processing, you can download it [here](https://processing.org/). A round play button should appear near the top-left corner of the application window. Click on it, and enjoy the show!
 
 ## Code Excerpt
 Just to make sure you downloaded the proper files...
