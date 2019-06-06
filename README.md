@@ -1,9 +1,9 @@
 # Daffodils
 
-This project defines an animated version of the poem [Daffodils](https://www.poetryfoundation.org/poems/45521/i-wandered-lonely-as-a-cloud), as written by William Wordsworth in 1804. I do not take credit for any of the images or language used in the project, nor do I wish to - this is merely a beginner's exploration into the realm of computer science.
+This project defines an animated version of the poem [Daffodils](https://www.poetryfoundation.org/poems/45521/i-wandered-lonely-as-a-cloud), as written by William Wordsworth in 1804. I do not take credit for any of the images or language used in the project, nor do I wish to - this is merely a beginner's exploration into the realm of computer graphics.
 
 ## Author
-Simon Britton, a freshman enrolled in the AP Computer Science course at Francis Parker
+Simon Britton, a freshman currently enrolled in the AP Computer Science course at Francis Parker
 
 ## Installation
 Simply clone this repository on Github, or download the files as a .zip folder. They are also available in Google Drive, though access is restricted to those attending or working at Francis Parker School. 
